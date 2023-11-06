@@ -34,7 +34,7 @@ export const assignStudentToMentor = async (req, res) => {
     console.log(mentor);
     const student = await StudentModel.findOneAndUpdate(
       { StudentName: StudentName },
-      { $set: { Mentor : mentor._id } },
+      { $set: { Mentor: mongoose.Types.ObjectId(mentor.Id) } },
       { new: true }
     );
     res.status(200).json({ message: 'Student assigned to mentor successfully', data: student });
