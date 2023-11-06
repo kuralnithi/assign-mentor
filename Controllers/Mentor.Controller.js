@@ -62,7 +62,7 @@ export const getStudentsForMentor = async (req, res) => {
         },
       }
       
-    ]).toArray();
+    ]);
     console.log("students",students);
 
    res.status(200).json({ message: 'Students for mentor fetched successfully', data: students });
