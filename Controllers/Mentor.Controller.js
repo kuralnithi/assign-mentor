@@ -54,14 +54,14 @@ export const getStudentsForMentor = async (req, res) => {
       //     as: "mentorInfo",
       //   },
       // },
-      // {
-      //   $project: {
-      //     _id: 1,
-      //     StudentName: 1,
-      //     Subject: 1,
-      //     mentor: { $arrayElemAt: ["$mentorInfo", 0] },
-      //   },
-      // },
+      {
+        $project: {
+          _id: 1,
+          StudentName: 1,
+          Subject: 1,
+          mentor: { $arrayElemAt: ["$mentorInfo", 0] },
+        },
+      },
     ]);
     console.log("students",students);
 
