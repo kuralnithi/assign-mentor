@@ -47,11 +47,22 @@ export const assignStudentToMentor = async (req, res) => {
 // Get Students for a Particular Mentor
 export const getStudentsForMentor = async (req, res) => {
  const {MentorName}= req.body;
+  const mentor = await MentorModel.find({MentorName:MentorName});
   try {
     const students = await StudentModel.aggregate([
       {
-        $match: { Mentor: MentorName }
-      }])
+        $match: { Mentor: mentor._id }
+      },
+      {
+        $lookup: {
+          from: "mentormodels",
+          localField: "Mentor",  
+          foreignField: "_id",
+          as: "mentorInfo",
+        },
+      }
+      
+    ]).toArray();
     console.log("students",students);
 
    res.status(200).json({ message: 'Students for mentor fetched successfully', data: students });
