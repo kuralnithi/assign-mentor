@@ -66,7 +66,7 @@ export const getStudentsForMentor = async (req, res) => {
     // ]);
     console.log("students",students);
 
-   res.status(200).json({ message: 'Students for mentor fetched successfully', data: [...students] });
+   res.status(200).json({ message: 'Students for mentor fetched successfully', data: students });
   } catch (error) {
     console.error('Error fetching students for mentor:', error);
     res.status(500).json({ message: 'Error in fetching students for mentor', error });
