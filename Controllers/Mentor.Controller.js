@@ -30,7 +30,7 @@ export const assignStudentToMentor = async (req, res) => {
   const { StudentName, MentorName } = req.body;
   try {
     const mentor = await MentorModel.findOne({MentorName:MentorName});
-    const student = await StudentModel.findOneAndUpdate({StudentName:StudentName},{$set :{ Mentor: mentor._id }}, { new: true });
+    const student = await StudentModel.findOneAndUpdate({StudentName:StudentName},{$set :{ Mentor:`ObjectId("${mentor._id}")` }}, { new: true });
     res.status(200).json({ message: 'Student assigned to mentor successfully', data: student });
   } catch (error) {
     console.error('Error assigning student to mentor:', error);
@@ -63,8 +63,9 @@ export const getStudentsForMentor = async (req, res) => {
         },
       },
     ]);
+    console.log("students",students);
+
    res.status(200).json({ message: 'Students for mentor fetched successfully', data: [...students] });
-    console.log(students);
   } catch (error) {
     console.error('Error fetching students for mentor:', error);
     res.status(500).json({ message: 'Error in fetching students for mentor', error });
