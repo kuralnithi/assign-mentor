@@ -9,6 +9,6 @@ router.get('/getmentor', getMentorList);
 
 router.post('/assign', assignStudentToMentor);
 
-router.get('/students/:mentorId', getStudentsForMentor);
+router.post('/studentlist', getStudentsForMentor);
 
 export default router;
