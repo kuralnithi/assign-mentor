@@ -52,10 +52,7 @@ export const getStudentsForMentor = async (req, res) => {
     const students = await StudentModel.aggregate([
       {
         $match: { Mentor: mentor._id }
-      }
-      
-      
-      
+      }      
     ]);
     console.log("students",students);
 
