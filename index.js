@@ -16,6 +16,19 @@ app.use(cors());
 app.use('/api/mentors', mentorRouter);
 app.use('/api/students', studentRouter);
 
+//testing purpose
+app.get('/', async (req, res) => {
+try {
+  res.status(200).json({ message: "assign mentor API done by kuralnithi Working Fine...." });
+  console.log("assign mentor API done by kuralnithi Working Fine....");
+} catch (error) {
+  res.status(500).json({ message: "server error" });
+  console.log("error in server>>>>>>>");
+}
+});
+
+
+
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);
 });

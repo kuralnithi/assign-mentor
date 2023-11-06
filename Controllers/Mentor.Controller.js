@@ -47,7 +47,7 @@ export const getStudentsForMentor = async (req, res) => {
       },
       {
         $lookup: {
-          from: 'mentors', // Adjust to your actual collection name for mentors
+          from: 'mentors', 
           localField: 'Mentor',
           foreignField: '_id',
           as: 'mentorInfo',
