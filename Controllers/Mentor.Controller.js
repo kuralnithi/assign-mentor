@@ -47,7 +47,8 @@ export const assignStudentToMentor = async (req, res) => {
 // Get Students for a Particular Mentor
 export const getStudentsForMentor = async (req, res) => {
  const {MentorName}= req.body;
-  const mentor = await MentorModel.find({MentorName:MentorName});
+  const mentor = await MentorModel.find({ MentorName: MentorName });
+  console.log("IDDDDDDDDDDDDDDd",mentor._id);
   try {
     const students = await StudentModel.aggregate([
       {
