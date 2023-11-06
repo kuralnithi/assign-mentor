@@ -30,6 +30,7 @@ export const assignStudentToMentor = async (req, res) => {
   const { StudentName, MentorName } = req.body;
   try {
     const mentor = await MentorModel.findOne({ MentorName: MentorName });
+    console.log(mentor);
     const student = await StudentModel.findOneAndUpdate({StudentName:StudentName},{$set :{ Mentor: mentor._id }}, { new: true });
     res.status(200).json({ message: 'Student assigned to mentor successfully', data: student });
   } catch (error) {
@@ -49,7 +50,7 @@ export const getStudentsForMentor = async (req, res) => {
       {
         $lookup: {
           from: "MentorModel",
-          localField: "Mentor",  
+          localField: { $toObjectId: "$Mentor" },  
           foreignField: "_id",
           as: "mentorInfo",
         },
