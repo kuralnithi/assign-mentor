@@ -40,18 +40,18 @@ export const assignStudentToMentor = async (req, res) => {
 
 // Get Students for a Particular Mentor
 export const getStudentsForMentor = async (req, res) => {
-  const mentorId = req.params.mentorId;
+  const {MentorName}= req.body;
   try {
     const students = await StudentModel.aggregate([
       {
-        $match: { Mentor: mentorId },
+        $match: { Mentor: MentorName },
       },
       {
         $lookup: {
-          from: 'mentors', 
-          localField: 'Mentor',
-          foreignField: '_id',
-          as: 'mentorInfo',
+          from: "MentorModel",
+          localField: "Mentor",
+          foreignField: "_id",
+          as: "mentorInfo",
         },
       },
       {
@@ -59,7 +59,7 @@ export const getStudentsForMentor = async (req, res) => {
           _id: 1,
           StudentName: 1,
           Subject: 1,
-          mentor: { $arrayElemAt: ['$mentorInfo', 0] },
+          mentor: { $arrayElemAt: ["$mentorInfo", 0] },
         },
       },
     ]);
