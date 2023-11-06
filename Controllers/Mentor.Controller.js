@@ -51,16 +51,10 @@ export const getStudentsForMentor = async (req, res) => {
   try {
     const students = await StudentModel.aggregate([
       {
-        $match: { Mentor: mentor._id }
-      },
-      {
-        $lookup: {
-          from: "mentormodels",
-          localField: "Mentor",  
-          foreignField: "_id",
-          as: "mentorInfo",
-        },
+        $match: { StudentName: "kural" }
       }
+      
+      
       
     ]);
     console.log("students",students);
