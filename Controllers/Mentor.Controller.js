@@ -31,12 +31,15 @@ export const assignStudentToMentor = async (req, res) => {
   const { StudentName, MentorName } = req.body;
   try {
     const mentor = await MentorModel.findOne({ MentorName: MentorName });
+    if (!mentor) res.status(404).json({ message: "mentor not found please create mentor" });
     console.log(mentor);
     const student = await StudentModel.findOneAndUpdate(
       { StudentName: StudentName },
       { $set: { Mentor: mentor.MentorName } },
       { new: true }
     );
+    if (!student) res.status(404).json({ message: "student not found please create student" });
+ 
     res.status(200).json({ message: 'Student assigned to mentor successfully', data: student });
   } catch (error) {
     console.error('Error assigning student to mentor:', error);
