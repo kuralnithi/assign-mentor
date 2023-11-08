@@ -4,6 +4,6 @@ import { createStudent, getStudentList } from '../Controllers/Student.Controller
 const router = express.Router();
 
 router.post('/createstudent', createStudent);
-router.get('/studentlist', getStudentList);
+router.get('/allstudentlist', getStudentList);
 
 export default router;
