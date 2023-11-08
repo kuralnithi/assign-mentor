@@ -3,15 +3,18 @@ import { createMentor, getMentorList, assignStudentToMentor, getStudentsForMento
 
 const router = express.Router();
 
-router.post('/creatementor', createMentor);
+router.post('/creatementor', createMentor); //to create a mentor
 
-router.get('/getmentor', getMentorList);
+router.get('/getmentor', getMentorList); // to get all mentor 
 
-router.post('/assign', assignStudentToMentor);
+router.post('/assign', assignStudentToMentor); // to assign one student to one mentor
 
-router.post("/assignmultiple", MultiStudForOneMen);
+router.post("/assignmultiple", MultiStudForOneMen); // to assign many students to one mentor
 
 
-router.post('/studentlist', getStudentsForMentor);
+router.post('/studentlist', getStudentsForMentor); // to get student list for one mentor
+
+      // ----------------------->   SEE MORE ROUTERS IN STUDENT ROUTER
+
 
 export default router;
