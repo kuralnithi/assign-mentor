@@ -84,7 +84,7 @@ try {
   
   
   const UpdatedStudents = await StudentModel.updateMany({
-    StudentsName: {
+    StudentName: {
       $in:StudentsName
     }
   }, {
