@@ -67,12 +67,7 @@ export const getStudentsForMentor = async (req, res) => {
         foreignField: "_id",
         as: "mentorDetails",
       },
-    },
-    // {
-    //   $match: {
-    //     mentorDetails: { $ne: [] }, // This filters out documents without a matching mentor in the foreign collection
-    //   },
-    // },
+    }
   ]);
 
     console.log("students",students);

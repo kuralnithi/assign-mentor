@@ -5,7 +5,7 @@ const StudentSchema = mongoose.Schema({
   Subject: String,
   Mentor: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'MentorModel' // Replace 'MentorModel' with the actual name of the mentor collection
+    ref: 'mentormodels' // Replace 'MentorModel' with the actual name of the mentor collection
   }
 });
 
