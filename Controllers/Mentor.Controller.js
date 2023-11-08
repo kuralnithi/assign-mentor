@@ -83,18 +83,16 @@ try {
     console.log(mentor);
   
   
-  const UpdatedStudents = await StudentModel.updateMany({
+  const UpdatedStudents = await StudentModel.findAndUpdate({
     StudentName: {
       $in:StudentsName
     }
   }, {
     $set: {
-      PreviousMentor:'$Mentor',
       Mentor: mentor.MentorName
-      
-    }
+      }
   }, {
-    neww:true
+    new:true
   });
 
 
