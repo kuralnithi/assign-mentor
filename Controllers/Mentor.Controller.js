@@ -91,14 +91,12 @@ try {
     $set: {
       Mentor: mentor.MentorName
       }
-  }, {
-    new:true
   });
 
 
   if (UpdatedStudents.matchedCount!==0) {
       return    res.status(200).json({ message: 'Students assigned to mentor successfully',UpdatedStudents });
-  } else {
+  }   else {
       return    res.status(404).json({ message: 'No Matching found for the students'});
     
 }
