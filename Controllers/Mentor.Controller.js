@@ -71,7 +71,7 @@ export const assignStudentToMentor = async (req, res) => {
 
 //Assign Multiple student for one mentor
 
-exportconst MultiStudForOneMen = async (req, res) => {
+export const MultiStudForOneMen = async (req, res) => {
   
 try {
   
