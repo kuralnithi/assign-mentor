@@ -54,15 +54,14 @@ export const assignStudentToMentor = async (req, res) => {
 
 
     const PrevNewMentorforStudent = await StudentModel.findOneAndUpdate(
-      { Mentor: Student.Mentor },
+      { StudentName: Student.StudentName },
       { $set: { PreviousMentor: Student.Mentor,Mentor:mentor.MentorName } },
       { new: true }
     );
-
-    res.status(200).json({ message: 'Student assigned to mentor successfully', data: PrevNewMentorforStudent });
-
     console.log("MentorforStudent>>>>>", PrevNewMentorforStudent);
-    return;
+
+    return    res.status(200).json({ message: 'Student assigned to mentor successfully', data: PrevNewMentorforStudent });
+
 
   } catch (error) {
     console.error('Error assigning student to mentor:', error);
