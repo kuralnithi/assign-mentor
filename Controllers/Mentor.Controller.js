@@ -71,7 +71,7 @@ export const assignStudentToMentor = async (req, res) => {
 
 //Assign Multiple student for one mentor
 
-export const MultiStudForOneMen = async (req, res) => {
+exportconst MultiStudForOneMen = async (req, res) => {
   
 try {
   
@@ -84,7 +84,7 @@ try {
   
   
   const UpdatedStudents = await StudentModel.updateMany({
-    StudentName: {
+    StudentsName: {
       $in:StudentsName
     }
   }, {
@@ -92,7 +92,9 @@ try {
       PreviousMentor:"$Mentor",
       Mentor: mentor.MentorName
       
-  }});
+    },},{
+    new:true
+  });
 
 
   if (UpdatedStudents) {
