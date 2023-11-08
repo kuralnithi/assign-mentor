@@ -69,6 +69,53 @@ export const assignStudentToMentor = async (req, res) => {
   }
 };
 
+//Assign Multiple student for one mentor
+
+export const MultiStudForOneMen = async (req, res) => {
+  
+try {
+  
+  const { StudentsName, MentorName } = req.body;
+
+  
+    const mentor = await MentorModel.findOne({ MentorName: MentorName });
+    if (!mentor) res.status(404).json({ message: "mentor not found please create mentor" });
+    console.log(mentor);
+  
+  
+  const UpdatedStudents = await StudentModel.updateMany({
+    StudentsName: {
+      $in:StudentsName
+    }
+  }, {
+    $set: {
+      PreviousMentor:"$Mentor",
+      Mentor: mentor.MentorName
+      
+  }});
+
+
+  if (UpdatedStudents.nModified > 0) {
+      return    res.status(200).json({ message: 'Students assigned to mentor successfully',UpdatedStudents });
+  } else {
+      return    res.status(404).json({ message: 'No Matching found for the students'});
+    
+}
+
+} catch (error) {
+  
+
+    console.error('Error assigning student to mentor:', error);
+    res.status(500).json({ message: 'Error in assigning multi student to one mentor', error });
+}
+
+
+}
+
+
+
+
+
 // Get Students for a Particular Mentor
 export const getStudentsForMentor = async (req, res) => {
   
