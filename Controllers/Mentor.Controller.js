@@ -52,12 +52,12 @@ export const getStudentsForMentor = async (req, res) => {
   
   const { MentorName } = req.body;
 
-  
+  const mentor = await MentorModel.find({ MentorName: MentorName });
   try {
   const students = await StudentModel.aggregate([
     {
       $match: {
-        Mentor: MentorName,
+        Mentor: mentor._id,
       },
     },
     {
