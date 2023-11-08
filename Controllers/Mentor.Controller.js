@@ -92,9 +92,7 @@ try {
       PreviousMentor:"$Mentor",
       Mentor: mentor.MentorName
       
-    },},{
-    new:true
-  });
+    }});
 
 
   if (UpdatedStudents) {
