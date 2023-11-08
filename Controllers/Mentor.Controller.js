@@ -45,7 +45,7 @@ export const assignStudentToMentor = async (req, res) => {
     if(!Student.Mentor)
     {    const newMentor = await StudentModel.findOneAndUpdate(
       { StudentName: StudentName },
-      { $set: { Mentor: mentor.Men } },
+      { $set: { Mentor: mentor.MentorName } },
       { new: true }
     );
  
