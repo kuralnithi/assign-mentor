@@ -62,7 +62,7 @@ export const getStudentsForMentor = async (req, res) => {
           'Mentor':MentorName
         },
       $lookup: {
-          from: MentorModel,
+          from: 'mentormodels',
           localfield: 'Mentor',
           foreignField: 'MentorName',
           as:'mentorDetails'
