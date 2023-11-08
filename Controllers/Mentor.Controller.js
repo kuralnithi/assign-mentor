@@ -54,24 +54,27 @@ export const getStudentsForMentor = async (req, res) => {
 
   
   try {
-  
-    const students = await StudentModel.aggregate([
-      
-      {
-        $match: {
-          'Mentor': MentorName
-        }
-      }, {
-        $lookup: {
-          from: 'mentormodels',
-          localfield: 'Mentor',
-          foreignField: 'MentorName',
-          as: 'mentorDetails'
-        }
-      }
-      
-                
-    ]);
+  const students = await StudentModel.aggregate([
+    {
+      $match: {
+        Mentor: MentorName,
+      },
+    },
+    {
+      $lookup: {
+        from: "mentormodels",
+        localField: "Mentor",
+        foreignField: "MentorName",
+        as: "mentorDetails",
+      },
+    },
+    {
+      $match: {
+        mentorDetails: { $ne: [] }, // This filters out documents without a matching mentor in the foreign collection
+      },
+    },
+  ]);
+
     console.log("students",students);
 
    res.status(200).json({ message: 'Students for mentor fetched successfully', data: students });
