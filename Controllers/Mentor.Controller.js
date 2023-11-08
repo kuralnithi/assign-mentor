@@ -83,7 +83,7 @@ try {
     console.log(mentor);
   
   
-  const UpdatedStudents = await StudentModel.findAndUpdate({
+  const UpdatedStudents = await StudentModel.updateMany({
     StudentName: {
       $in:StudentsName
     }
