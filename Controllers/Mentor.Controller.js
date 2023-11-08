@@ -89,7 +89,7 @@ try {
     }
   }, {
     $set: {
-      PreviousMentor:"$Mentor",
+      PreviousMentor:$Mentor,
       Mentor: mentor.MentorName
       
     }
