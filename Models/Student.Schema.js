@@ -4,8 +4,7 @@ const StudentSchema = mongoose.Schema({
   StudentName: String,
   Subject: String,
   Mentor: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'mentormodels' // Replace 'MentorModel' with the actual name of the mentor collection
+    type: mongoose.Schema.Types.ObjectId
   }
 });
 
