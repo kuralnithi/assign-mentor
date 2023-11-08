@@ -89,10 +89,12 @@ try {
     }
   }, {
     $set: {
-      PreviousMentor:$Mentor,
+      PreviousMentor:'$Mentor',
       Mentor: mentor.MentorName
       
     }
+  }, {
+    neww:true
   });
 
 
