@@ -37,7 +37,11 @@ export const assignStudentToMentor = async (req, res) => {
     
     const Student = await StudentModel.findOne({ StudentName: StudentName });
     if (!Student) res.status(404).json({ message: "Student not found please create Student" });
-   
+  
+    
+    if (Student.Mentor == mentor.MentorName)
+      return res.status(403).json({ message: "Mentor already assigned please enter alternate mentor name" });
+
     if(!Student.Mentor)
     {    const newMentor = await StudentModel.findOneAndUpdate(
       { StudentName: StudentName },
