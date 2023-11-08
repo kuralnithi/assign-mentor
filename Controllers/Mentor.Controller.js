@@ -60,13 +60,13 @@ export const getStudentsForMentor = async (req, res) => {
       {
         $match: {
           'Mentor':MentorName
+        },
+      $lookup: {
+          from: 'mentormodels',
+          localfield: 'Mentor',
+          foreignField: 'MentorName',
+          as:'mentorDetails'
         }
-      // $lookup: {
-      //     from: 'mentormodels',
-      //     localfield: 'Mentor',
-      //     foreignField: 'MentorName',
-      //     as:'mentorDetails'
-      //   }
       
       }          
     ]);
