@@ -35,7 +35,7 @@ export const assignStudentToMentor = async (req, res) => {
     console.log(mentor);
     const student = await StudentModel.findOneAndUpdate(
       { StudentName: StudentName },
-      { $set: { Mentor: mentor.MentorName } },
+      { $set: { Mentor: mentor._id } },
       { new: true }
     );
     if (!student) res.status(404).json({ message: "student not found please create student" });
@@ -52,22 +52,27 @@ export const getStudentsForMentor = async (req, res) => {
   
   const { MentorName } = req.body;
 
-  const mentor = await MentorModel.find({ MentorName: MentorName });
+  
   try {
   const students = await StudentModel.aggregate([
     {
       $match: {
-        Mentor: mentor.MentorName,
+        Mentor: MentorName,
       },
     },
     {
       $lookup: {
         from: "mentormodels",
         localField: "Mentor",
-        foreignField: 'MentorName',
+        foreignField: "MentorName",
         as: "mentorDetails",
       },
-    }
+    },
+    // {
+    //   $match: {
+    //     mentorDetails: { $ne: [] }, // This filters out documents without a matching mentor in the foreign collection
+    //   },
+    // },
   ]);
 
     console.log("students",students);
