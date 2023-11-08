@@ -35,7 +35,7 @@ export const assignStudentToMentor = async (req, res) => {
     console.log(mentor);
     const student = await StudentModel.findOneAndUpdate(
       { StudentName: StudentName },
-      { $set: { Mentor: mentor.MentorName } },
+      { $set: { Mentor: mentor._id } },
       { new: true }
     );
     if (!student) res.status(404).json({ message: "student not found please create student" });
@@ -64,7 +64,7 @@ export const getStudentsForMentor = async (req, res) => {
       $lookup: {
         from: "mentormodels",
         localField: "Mentor",
-        foreignField: "MentorName",
+        foreignField: "_id",
         as: "mentorDetails",
       },
     },
