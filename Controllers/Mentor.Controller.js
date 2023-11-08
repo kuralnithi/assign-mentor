@@ -55,11 +55,11 @@ export const getStudentsForMentor = async (req, res) => {
   
   try {
   const students = await StudentModel.aggregate([
-    // {
-    //   $match: {
-    //     Mentor: MentorName,
-    //   },
-    // },
+    {
+      $match: {
+        Mentor: MentorName,
+      },
+    },
     {
       $lookup: {
         from: "mentormodels",
@@ -68,11 +68,11 @@ export const getStudentsForMentor = async (req, res) => {
         as: "mentorDetails",
       },
     },
-    {
-      $match: {
-        mentorDetails: { $ne: [] }, // This filters out documents without a matching mentor in the foreign collection
-      },
-    },
+    // {
+    //   $match: {
+    //     mentorDetails: { $ne: [] }, // This filters out documents without a matching mentor in the foreign collection
+    //   },
+    // },
   ]);
 
     console.log("students",students);
