@@ -1,5 +1,5 @@
 import express from 'express';
-import { createMentor, getMentorList, assignStudentToMentor, getStudentsForMentor, MultiStudForOneMen } from '../Controllers/Mentor.Controller.js';
+import { createMentor, getMentorList, assignStudentToMentor, getStudentsForMentor, MultiStudForOneMen, previousMentor } from '../Controllers/Mentor.Controller.js';
 
 const router = express.Router();
 
@@ -13,6 +13,11 @@ router.post("/assignmultiple", MultiStudForOneMen); // to assign many students t
 
 
 router.post('/studentlist', getStudentsForMentor); // to get student list for one mentor
+
+
+router.post("/previousmentor", previousMentor); // to get student list for one mentor
+
+
 
       // ----------------------->   SEE MORE ROUTERS IN STUDENT ROUTER
 

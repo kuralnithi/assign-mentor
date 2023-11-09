@@ -26,6 +26,33 @@ export const getMentorList = async (req, res) => {
   }
 };
 
+
+
+// Get Previous Mentor for a student
+
+export const previousMentor = async (req, res) => {
+  
+  try {
+    const student = await StudentModel.find(req.body);
+
+        if(!student)
+        return res.status(200).json({ message: 'Student not found'});
+
+    
+       const preMentor = student.PreviousMentor
+    
+        return res.status(200).json({ message: 'Previous mentor found',data:preMentor});
+
+
+  } catch (error) {
+    console.error('Error in previous mentor:', error);
+    res.status(500).json({ message: "Error in previous mentor", error });
+  }
+};
+
+
+
+
 // Assign Student to Mentor
 export const assignStudentToMentor = async (req, res) => {
   const { StudentName, MentorName } = req.body;
