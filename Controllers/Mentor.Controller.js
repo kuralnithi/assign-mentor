@@ -42,7 +42,7 @@ const {StudentName} = req.body
     const preMentor = student.PreviousMentor
 
     console.log(preMentor);
-        return res.status(200).json({ message: 'Previous mentor found', data:preMentor});
+        return res.status(200).json({ message: 'Previous mentor found', data:student});
     }
     
         return res.status(200).json({ message: 'Previous mentor not found'});
