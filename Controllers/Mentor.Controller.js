@@ -41,7 +41,7 @@ export const previousMentor = async (req, res) => {
     
        const preMentor = student.PreviousMentor
     
-        return res.status(200).json({ message: 'Previous mentor found',data:preMentor});
+        return res.status(200).json({ message: 'Previous mentor found', data:{preMentor:preMentor}});
 
 
   } catch (error) {
