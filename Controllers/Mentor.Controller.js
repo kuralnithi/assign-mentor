@@ -33,7 +33,10 @@ export const getMentorList = async (req, res) => {
 export const previousMentor = async (req, res) => {
   
   try {
-    const student = await StudentModel.find(req.body);
+
+const {StudentName} = req.body 
+
+    const student = await StudentModel.find({StudentName});
 
         if(!student)
         return res.status(200).json({ message: 'Student not found'});
