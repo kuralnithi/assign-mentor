@@ -39,10 +39,10 @@ const {StudentName} = req.body
     const student = await StudentModel.find({StudentName});
 
       if(student) {   
-    const preMentor = student.PreviousMentor
+        const preMentor = student[0]["PreviousMentor"];
 
     console.log(preMentor);
-        return res.status(200).json({ message: 'Previous mentor found', data:student});
+        return res.status(200).json({ message: 'Previous mentor found', data:preMentor});
     }
     
         return res.status(200).json({ message: 'Previous mentor not found'});
